@@ -56,19 +56,19 @@ const Ingredients = () => {
 
   const removeIngredientHandler = ingredientId => {
     setIsLoading(true);
-    fetch(`https://react-hooks-6ee32-default-rtdb.firebaseio.com/ingredients/${ingredientId}.son`, {
+    fetch(`https://react-hooks-6ee32-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json`, {
       method: 'DELETE'
     }).then(respose => {
       setIsLoading(false);
       setUserIngredients(prevIngredients => prevIngredients.filter(ingredient => ingredient.id !== ingredientId));
     }).catch(error => {
       setError('Something went wrong');
+      setIsLoading(false);
     });
   }
 
   const clearError = () => {
-    setError(null);
-    setIsLoading(false);
+    setError(null);    
   }
 
   return (
