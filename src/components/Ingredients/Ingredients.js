@@ -50,7 +50,11 @@ const Ingredients = () => {
   };
 
   const removeIngredientHandler = ingredientId => {
-    setUserIngredients(prevIngredients => prevIngredients.filter(ingredient => ingredient.id !== ingredientId));
+    fetch(`https://react-hooks-6ee32-default-rtdb.firebaseio.com/ingredients/${ingredientId}.json`, {
+      method: 'DELETE'
+    }).then(respose => {
+      setUserIngredients(prevIngredients => prevIngredients.filter(ingredient => ingredient.id !== ingredientId));
+    });    
   }
 
   return (
